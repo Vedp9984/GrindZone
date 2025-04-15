@@ -1,6 +1,6 @@
-# Adda
+# GrindZone
 
-**Adda** is a curated repository designed to help students prepare for **internships** and **placements**, especially in technical roles such as software engineering, systems, and development. This repo includes organized notes, important concepts, and topic-wise breakdowns commonly asked in interviews.
+**GrindZone** is a curated repository designed to help students prepare for **internships** and **placements**, especially in technical roles such as software engineering, systems, and development. This repo includes organized notes, important concepts, and topic-wise breakdowns commonly asked in interviews.
 
 ---
 
@@ -88,12 +88,3 @@ The content is structured around the most important areas asked during technical
 
 ---
 
-## 🙌 Contributing
-
-Feel free to raise issues or contribute if you think something can be improved or added. All contributions are welcome!
-
----
-
-## 📌 License
-
-This project is open-sourced under the [MIT License](LICENSE).
