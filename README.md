@@ -88,12 +88,4 @@ The content is structured around the most important areas asked during technical
 
 ---
 
-## 🙌 Contributing
 
-Feel free to raise issues or contribute if you think something can be improved or added. All contributions are welcome!
-
----
-
-## 📌 License
-
-This project is open-sourced under the [MIT License](LICENSE).
