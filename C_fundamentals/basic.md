@@ -79,8 +79,6 @@ A: Pointer pointing to a freed memory location.
 **Q: What is a memory leak?**
 A: Memory not freed properly, leading to resource wastage.
 
-**Q: What is a wild pointer?**
-A: An uninitialized pointer that contains garbage address.
 
 **Q: What is pointer arithmetic and its limitations?**
 A: Operations like addition/subtraction on pointers. Limited to same data type; cannot multiply/divide pointers.
@@ -273,7 +271,201 @@ A:
 * `return`: Exits function.
 * `exit()`: Terminates program.
 
+
 ---
+
+### 1. What are tokens in C?
+
+Tokens are the smallest elements of a C program, including:
+
+* Keywords
+* Identifiers
+* Constants
+* Operators
+* Punctuators
+
+---
+
+### 2. Difference between declaration and definition?
+
+* **Declaration:** Announces the existence of a variable or function.
+
+  ```c
+  extern int x; // declaration only
+  ```
+* **Definition:** Allocates memory (and may initialize).
+
+  ```c
+  int x = 10;  // definition
+  ```
+
+---
+
+### 3. Print without semicolon?
+
+```c
+#include <stdio.h>
+int main() {
+    if (printf("Hello World")) {}
+    return 0;
+}
+```
+
+---
+
+### 4. What is a NULL pointer?
+
+A pointer that doesn't point to any valid memory location. It is defined as:
+
+```c
+#define NULL ((void*)0)
+```
+
+---
+
+### 5. What is a dangling pointer?
+
+A pointer pointing to a memory location that has been freed or goes out of scope.
+
+---
+
+### 6. What is a wild pointer?
+
+A pointer that is declared but not initialized.
+
+```c
+int *ptr; // wild pointer
+```
+
+---
+
+### 7. What are local static variables?
+
+They retain their values between function calls.
+
+```c
+void fun() {
+    static int x = 0;
+    x++;
+    printf("%d ", x);
+}
+```
+
+---
+
+### 8. What is a static function?
+
+Functions declared with `static` are accessible only within the file.
+
+---
+
+### 9. Use of `_Noreturn`?
+
+Indicates that a function does not return:
+
+```c
+_Noreturn void fatal_error() {
+    exit(1);
+}
+```
+
+---
+
+### 10. What is `__func__`?
+
+A predefined identifier containing the name of the function as a string literal.
+
+---
+
+### 11. Can you pass an array by value in C?
+
+Not directly. Arrays decay to pointers. Use `struct` to wrap the array if needed.
+
+---
+
+### 12. What are variadic functions?
+
+Functions that accept a variable number of arguments, like `printf()`.
+
+```c
+#include <stdarg.h>
+void example(int count, ...) {
+    va_list args;
+    va_start(args, count);
+    // access args using va_arg
+    va_end(args);
+}
+```
+
+---
+
+### 13. Are nested functions allowed in C?
+
+Not in standard C. GCC allows it as an extension.
+
+---
+
+### 14. What is a function pointer?
+
+A variable that stores the address of a function.
+
+```c
+int add(int a, int b) { return a + b; }
+int (*fp)(int, int) = add;
+printf("%d", fp(2, 3));
+```
+
+---
+
+### 15. Difference between `malloc` and `calloc`?
+
+* `malloc(size)` – allocates memory of `size` bytes.
+* `calloc(n, size)` – allocates and initializes to zero.
+
+---
+
+### 16. What are memory leaks?
+
+Memory allocated but not freed, causing resource wastage.
+
+---
+
+### 17. What are lvalue and rvalue?
+
+* **lvalue** – refers to an object with an address
+* **rvalue** – data value that doesn’t persist (e.g., literals)
+
+---
+
+### 18. What is typecasting?
+
+Converting a variable from one type to another:
+
+```c
+float x = 5.5;
+int y = (int)x; // y becomes 5
+```
+
+---
+
+### 19. What are volatile variables?
+
+Tells the compiler not to optimize the variable; it may change externally.
+
+```c
+volatile int flag;
+```
+
+---
+
+### 20. What is the difference between `const` and `#define`?
+
+* `const int x = 10;` has type checking
+* `#define X 10` is a macro replaced at preprocessor stage
+
+---
+
+=
 
 ## 12. Common Coding Questions
 
@@ -316,4 +508,118 @@ void swap(int *a, int *b) {
 ```
 
 ---
+
+
+##  malloc/calloc/realloc Coding Questions
+
+### 1. Write a program to allocate memory dynamically using malloc for an array of `n` integers and initialize them.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    for (int i = 0; i < n; i++) {
+        arr[i] = i + 1;
+    }
+
+    printf("Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    free(arr);
+    return 0;
+}
+```
+
+---
+
+### 2. Modify the above program using calloc and explain the difference.
+
+```c
+int *arr = (int *)calloc(n, sizeof(int));
+```
+
+* `calloc` initializes memory to zero, unlike `malloc`.
+
+---
+
+### 3. Write a C program to increase the size of an allocated array using `realloc`.
+
+```c
+arr = (int *)realloc(arr, 2 * n * sizeof(int));
+if (arr == NULL) {
+    printf("Memory reallocation failed!\n");
+    return 1;
+}
+for (int i = n; i < 2 * n; i++) {
+    arr[i] = i + 1;
+}
+```
+
+---
+
+### 4. What happens if you pass NULL to `realloc`?
+
+It behaves like `malloc` and allocates new memory.
+
+```c
+int *ptr = realloc(NULL, sizeof(int) * 10); // same as malloc
+```
+
+---
+
+### 5. What happens if you `realloc` to size 0?
+
+Implementation-defined: may return NULL or a pointer that must not be dereferenced.
+
+```c
+ptr = realloc(ptr, 0); // May behave like free(ptr)
+```
+
+---
+
+### 6. Use malloc to create a matrix dynamically.
+
+```c
+int **matrix = malloc(rows * sizeof(int*));
+for (int i = 0; i < rows; i++) {
+    matrix[i] = malloc(cols * sizeof(int));
+}
+```
+
+---
+
+### 7. Freeing nested dynamic memory.
+
+```c
+for (int i = 0; i < rows; i++) {
+    free(matrix[i]);
+}
+free(matrix);
+```
+
+---
+
+### 8. Detecting memory leaks.
+
+* Use tools like `valgrind` on Linux:
+
+```sh
+valgrind ./a.out
+```
+
+---
+
+
 
