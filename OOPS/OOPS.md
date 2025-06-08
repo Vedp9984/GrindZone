@@ -653,3 +653,67 @@ int main() {
 - `virtual` keyword ensures dynamic dispatch of overridden functions.
 - Base class functions must be marked `virtual` to support polymorphism.
 - Use base class pointers or references to call overridden methods dynamically.
+
+# Abstraction in C++
+
+**Abstraction** is one of the key principles of Object-Oriented Programming (OOP). It means **hiding the internal implementation details** and **showing only the essential features** of an object.
+
+Hiding all unnecessary details and showing only the important parts.
+
+In C++, abstraction is achieved using:
+- **Abstract classes** (classes with at least one pure virtual function)
+- **Interfaces** (fully abstract classes)
+- **Access specifiers** (`private`, `public`, `protected`)
+
+---
+
+## Why Use Abstraction?
+
+- Simplifies complex systems
+- Focuses on **what** an object does, not **how**
+- Enhances security and modularity
+- Helps in **reducing code duplication**
+
+---
+
+## Example of Abstraction using Abstract Class
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Abstract base class
+class Shape {
+public:
+    // Pure virtual function
+    virtual void draw() = 0;
+};
+
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Circle" << endl;
+    }
+};
+
+class Square : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Square" << endl;
+    }
+};
+
+int main() {
+    Shape* s1 = new Circle();
+    Shape* s2 = new Square();
+
+    s1->draw();  // Output: Drawing Circle
+    s2->draw();  // Output: Drawing Square
+
+    delete s1;
+    delete s2;
+    return 0;
+}
+```
+
+# Static Keywords 
