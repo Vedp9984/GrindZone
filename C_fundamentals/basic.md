@@ -63,7 +63,7 @@ A: Evaluates multiple expressions, returns the value of the last one.
 **Q: What is a pointer?**
 A: A variable that stores the address of another variable.
 
-\**Q: *ptr vs \&ptr?**
+**Q: *ptr vs &ptr?**
 A: `*ptr` dereferences the pointer; `&ptr` gives the address of the pointer.
 
 **Q: Dangling pointer?**
@@ -78,6 +78,27 @@ A: Pointer pointing to a freed memory location.
 
 **Q: What is a memory leak?**
 A: Memory not freed properly, leading to resource wastage.
+
+**Q: What is a wild pointer?**
+A: An uninitialized pointer that contains garbage address.
+
+**Q: What is pointer arithmetic and its limitations?**
+A: Operations like addition/subtraction on pointers. Limited to same data type; cannot multiply/divide pointers.
+
+**Q: What are void pointers and their limitations?**
+A: Generic pointers that can point to any data type. Cannot be dereferenced without casting; pointer arithmetic not possible.
+
+**Q: Explain the concept of function pointers?**
+A: Pointers that point to functions instead of data. Used for callbacks, creating dispatch tables, etc.
+
+**Q: What happens when you dereference a NULL pointer?**
+A: Results in a segmentation fault/access violation during runtime.
+
+**Q: What is a near, far, and huge pointer?**
+A: Memory model concepts in older C implementations. Near (16-bit), far (32-bit segment:offset), huge (like far but normalized).
+
+**Q: How would you implement a memory pool/allocator?**
+A: Pre-allocate a large chunk of memory and manage it manually to reduce malloc/free overhead.
 
 ---
 
@@ -95,6 +116,30 @@ A:
 **Q: strlen() vs sizeof()?**
 A: `strlen()` counts characters before `\0`. `sizeof()` gives total allocated size.
 
+**Q: What happens when you access an array out of bounds?**
+A: Undefined behavior - might cause segmentation fault, corrupt memory, or work incorrectly.
+
+**Q: Can array name be used as a pointer?**
+A: Yes, array name decays into a pointer to the first element, but cannot be reassigned.
+
+**Q: What are multi-dimensional arrays in C?**
+A: Arrays of arrays, stored in row-major order (e.g., `int arr[3][4]`).
+
+**Q: How to dynamically allocate a 2D array?**
+A: Either as array of pointers (`int **arr`) or as contiguous block with pointer arithmetic.
+
+**Q: What is the difference between arrays and linked lists?**
+A: Arrays are contiguous with O(1) access; linked lists have non-contiguous elements with O(n) access but flexible size.
+
+**Q: How would you efficiently find duplicate elements in an array?**
+A: Using hash tables, sorting followed by linear scan, or bit manipulation (depending on constraints).
+
+**Q: How to pass a 2D array to a function?**
+A: Using pointer to array: `void func(int (*arr)[COLS])` or with explicit column size: `void func(int arr[][COLS])`.
+
+**Q: Explain string interning in C?**
+A: Compiler optimization where identical string literals share the same memory location.
+
 ---
 
 ## 5. Functions
@@ -105,8 +150,6 @@ A:
 * Call by value: Copy of data passed.
 * Call by reference: Address passed (via pointers).
 
-**Q: What is recursion?**
-A: Function calling itself. E.g., factorial, Fibonacci.
 
 **Q: Can you pass an array to a function?**
 A: Yes, as a pointer.
@@ -162,10 +205,34 @@ A: Yes, typically used in linked lists.
 ## 9. File Handling
 
 **Q: File opening modes?**
-A: `"r"`, `"w"`, `"a"`, `"r+"`, `"w+"`, etc.
+A: `"r"`, `"w"`, `"a"`, `"r+"`, `"w+"`, `"a+"`, `"rb"`, `"wb"`, `"ab"`, etc.
 
 **Q: fscanf vs fgets?**
 A: `fscanf` reads formatted input; `fgets` reads a line (safer for strings).
+
+**Q: What's the difference between text and binary file modes?**
+A: Text mode translates newlines; binary mode doesn't perform any translations.
+
+**Q: How do you check for end-of-file?**
+A: Using the `feof()` function or checking return values of `fread()`, `fscanf()`, etc.
+
+**Q: What is a file pointer?**
+A: A pointer to the FILE structure that contains information about the file being accessed.
+
+**Q: How do you move within a file?**
+A: Using `fseek()`, `ftell()`, and `rewind()` functions.
+
+**Q: What's the difference between fwrite() and fputs()?**
+A: `fwrite()` writes binary data; `fputs()` writes strings.
+
+**Q: How to flush a file stream?**
+A: Using `fflush()` function to clear the buffer.
+
+**Q: What happens if you don't close a file?**
+A: Resources remain allocated until program termination, potentially causing memory leaks or data loss.
+
+**Q: How to read a file character by character?**
+A: Using `fgetc()` or `getc()` functions.
 
 ---
 
