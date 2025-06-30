@@ -148,6 +148,4 @@ Used for queries like: "Find students who have taken all courses."
     - R(ID, Name, Age) and S(StudentNo, StudentName, Years) are union-compatible
     - R(ID, Name) and S(ID, Name, Dept) are not union-compatible
 
----
-
 
