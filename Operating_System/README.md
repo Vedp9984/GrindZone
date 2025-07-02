@@ -1,91 +1,214 @@
-# Adda
+# 📘 Operating Systems (OS) – Complete Topic Breakdown
 
-**Adda** is a curated repository designed to help students prepare for **internships** and **placements**, especially in technical roles such as software engineering, systems, and development. This repo includes organized notes, important concepts, and topic-wise breakdowns commonly asked in interviews.
-
----
-
-## 🚀 Purpose
-
-This repository aims to:
-
-- Cover key Computer Science fundamentals.
-- Help revise core topics quickly.
-- Serve as a go-to guide for coding interviews and tech screening rounds.
-- Assist in system design and development knowledge for advanced roles.
+This document covers all the **important subtopics** you need to prepare for Operating Systems including theory, concepts, and algorithms relevant for **exams**, **interviews**, and **practical understanding**.
 
 ---
 
-## 📚 Topics Covered
+## 1. 🧵 Process Management
 
-The content is structured around the most important areas asked during technical interviews:
-
-### 1. **Database Management Systems (DBMS)**
-- Basics of DBMS
-- Relational Algebra
-- Types of Keys
-- Joins (Inner vs Outer)
-- Normalization (1NF to 5NF)
-- ACID Properties
-- Transactions and Concurrency Control
-- SQL Queries (CRUD operations, Functions)
-
-### 2. **Operating Systems (OS)**
-- Process Management
-- Threads & Multithreading
-- CPU Scheduling (Preemptive & Non-Preemptive)
-- Deadlocks & Handling Methods
-- Memory Management (Paging, Segmentation, Virtual Memory)
-- File Systems & Disk Scheduling
-- Synchronization (Mutex, Semaphores)
-
-### 3. **Computer Networks**
-- OSI & TCP/IP Models
-- LAN, WAN, MAN
-- IP Addressing (IPv4, IPv6)
-- Routing Techniques (Unicast, Multicast)
-- Protocols (HTTP/HTTPS, TCP/UDP, DNS)
-- Data Link Layer (MAC Address, CSMA/CD)
-- Transport Layer (TCP Congestion Control)
-
-### 4. **System Design**
-- Load Balancing & Caching
-- Microservices & API Design
-- Database Sharding
-- CAP Theorem
-- Distributed Systems (Eventual Consistency, Replication)
-
-### 5. **Version Control (Git)**
-- Git Commands (Commit, Push, Pull, Merge)
-- Branching & Merging
-- Conflict Resolution
-- Pull Requests & Code Reviews
-
-### 6. **Multithreading and Concurrency**
-- Thread Safety & Synchronization
-- Race Conditions & Deadlocks
-- Mutex, Semaphores, and Conditional Variables
-- Concurrent Data Structures
-
-### 7. **Memory Management**
-- Stack vs Heap Memory
-- Garbage Collection
-- Memory Leaks & Prevention
-- Page Replacement Algorithms
-
-### 8. **Security Fundamentals**
-- Encryption (SSL/TLS)
-- OAuth, JWT
-- Authentication & Authorization
-- Common Vulnerabilities (SQL Injection, XSS)
+- Difference between Process and Program
+- Process States (new, ready, running, waiting, terminated)
+- Process Control Block (PCB)
+- Process Lifecycle & State Transitions
+- Context Switching
+- Process Creation & Termination (`fork()`, `exec()`, `exit()`)
+- Types of Processes:
+  - Foreground
+  - Background
+  - Zombie
+  - Orphan
+- Interprocess Communication (IPC):
+  - Pipes (anonymous and named)
+  - Message Passing
+  - Shared Memory
+  - Sockets
 
 ---
 
-## 🛠️ How to Use
+## 2. 🔁 Threads & Multithreading
 
-- Navigate through folders based on the topic.
-- Each folder contains concise notes, examples, and links to additional resources.
-- Ideal for quick revision before interviews.
+- Difference: Thread vs Process
+- Advantages of Multithreading
+- Types of Threads:
+  - User-Level Threads (ULT)
+  - Kernel-Level Threads (KLT)
+- Multithreading Models:
+  - Many-to-One
+  - One-to-One
+  - Many-to-Many
+- Thread Lifecycle
+- Thread Libraries (e.g., POSIX Pthreads)
+- Thread Synchronization
+- Issues in Multithreading:
+  - Race Conditions
+  - Deadlocks
+  - Starvation
 
 ---
 
+## 3. ⏱️ CPU Scheduling
+
+### ➤ Scheduling Criteria:
+- CPU Utilization
+- Throughput
+- Turnaround Time
+- Waiting Time
+- Response Time
+
+### ➤ Types:
+- Preemptive Scheduling
+- Non-Preemptive Scheduling
+
+### ➤ Scheduling Algorithms:
+- FCFS (First-Come, First-Served)
+- SJF (Shortest Job First)
+- Round Robin (RR)
+- Priority Scheduling (Preemptive & Non-Preemptive)
+- Multilevel Queue Scheduling
+- Multilevel Feedback Queue
+
+### ➤ Concepts:
+- Gantt Charts
+- Waiting Time and Turnaround Time Calculation
+- Starvation and Aging
+
+---
+
+## 4. ❌ Deadlocks
+
+### ➤ Conditions for Deadlock:
+1. Mutual Exclusion
+2. Hold and Wait
+3. No Preemption
+4. Circular Wait
+
+### ➤ Resource Allocation Graph (RAG)
+
+### ➤ Handling Techniques:
+- **Prevention:** Break at least one necessary condition
+- **Avoidance:** Banker’s Algorithm, Safe/Unsafe States
+- **Detection:** Using RAG and wait-for graphs
+- **Recovery:**
+  - Process Termination
+  - Resource Preemption
+
+---
+
+## 5. 💾 Memory Management
+
+### ➤ Paging:
+- Logical vs Physical Address
+- Page Table
+- Page Number and Offset
+- TLB (Translation Lookaside Buffer)
+- Advantages/Disadvantages
+
+### ➤ Segmentation:
+- Segment Table
+- Logical Address = (segment no, offset)
+
+### ➤ Paging vs Segmentation
+
+### ➤ Virtual Memory:
+- Demand Paging
+- Page Faults
+- Thrashing
+- Working Set Model
+
+### ➤ Page Replacement Algorithms:
+- FIFO (First In First Out)
+- LRU (Least Recently Used)
+- Optimal
+- Clock Algorithm
+
+### ➤ Advanced Concepts:
+- Multilevel Paging
+- Inverted Page Tables
+
+---
+
+## 6. 📁 File Systems & Disk Scheduling
+
+### ➤ File Concepts:
+- File Attributes
+- File Operations (Create, Open, Read, Write, Delete)
+- File Types
+
+### ➤ File Access Methods:
+- Sequential
+- Direct
+- Indexed
+
+### ➤ Directory Structures:
+- Single-level
+- Two-level
+- Tree-structured
+- Acyclic Graph
+- General Graph
+
+### ➤ File Allocation Methods:
+- Contiguous Allocation
+- Linked Allocation
+- Indexed Allocation
+
+### ➤ Free Space Management:
+- Bitmaps
+- Linked List
+- Grouping
+
+### ➤ Disk Scheduling Algorithms:
+- FCFS
+- SSTF (Shortest Seek Time First)
+- SCAN (Elevator)
+- LOOK
+- C-SCAN
+- C-LOOK
+
+### ➤ RAID (Basics):
+- RAID 0 to RAID 6 overview
+
+---
+
+## 7. 🔒 Synchronization
+
+### ➤ Critical Section Problem
+
+### ➤ Requirements:
+- Mutual Exclusion
+- Progress
+- Bounded Waiting
+
+### ➤ Software Solutions:
+- Peterson’s Algorithm
+- Bakery Algorithm
+
+### ➤ Hardware Solutions:
+- Test-and-Set
+- Compare-and-Swap
+
+### ➤ Synchronization Tools:
+- Mutex Locks
+- Semaphores (Binary and Counting)
+- Condition Variables
+- Monitors
+
+### ➤ Classical Problems:
+- Producer-Consumer Problem
+- Dining Philosophers Problem
+- Reader-Writer Problem
+- Sleeping Barber Problem
+
+---
+
+## 📚 Tips for Preparation
+
+- Practice MCQs and coding scenarios on synchronization and scheduling.
+- Draw Gantt charts for scheduling problems.
+- Implement semaphores and mutexes using `C/Pthreads` for deep understanding.
+- Solve past GATE/OS interview problems regularly.
+
+---
+
+> **Prepared by:** 🚀 *YourNameHere*  
+> For exam & interview revision
 
