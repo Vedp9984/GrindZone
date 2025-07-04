@@ -115,6 +115,7 @@ IPC is a mechanism that allows processes to communicate and synchronize their ac
 - **Anonymous Pipes**:
   - Unidirectional.
   - Used between parent and child processes.
+  - It connects the stdout (standard output) of the command on the left to the stdin (standard input) of the command on the right.
 - **Named Pipes (FIFOs)**:
   - Exist as a file.
   - Allow communication between unrelated processes.
