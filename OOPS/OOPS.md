@@ -66,6 +66,11 @@ In C++, **access specifiers** define the scope and visibility of class members (
 - Members declared as public can be accessed from anywhere in the program (inside or outside the class).
 - Used for member functions that provide access to private or protected data.
 
+## 3. `protected`
+- The **protected** access specifier allows class members to be accessible **within the class itself** and **in its derived (child) classes**, but **not accessible from outside the class**.
+
+
+
 ### Example:
 
 ```cpp
@@ -88,6 +93,38 @@ int main() {
     obj.setSecret(123);
     cout << obj.getSecret();  // Outputs: 123
     // obj.secret = 5;        // ❌ Error: 'secret' is private
+    return 0;
+}
+```
+
+### Example for protected access specifier:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+protected:
+    int protectedValue;
+
+public:
+    Base() {
+        protectedValue = 100;
+    }
+};
+
+class Derived : public Base {
+public:
+    void showValue() {
+        cout << "Protected value: " << protectedValue << endl;
+    }
+};
+
+int main() {
+    Derived obj;
+    obj.showValue();  // ✅ Allowed: access within derived class
+
+    // obj.protectedValue = 200;  // ❌ Error: protected member not accessible directly
     return 0;
 }
 ```
@@ -438,9 +475,6 @@ class DerivedClass : accessSpecifier BaseClass {
 ```
 
 ## Mode of inheritance
-![alt text](image.png)
-
-## Types of inheritance
 
 1. **Single inheritance**
 One derived class inherits from one base class.
@@ -517,7 +551,7 @@ class B : public A {};
 class C : public A {};
 ```
 
-5. Hybrid Inheritance
+5. **Hybrid Inheritance**
 A combination of two or more types of inheritance.
 
 ```cpp
@@ -532,14 +566,78 @@ class B : virtual public A {};
 class C : virtual public A {};
 class D : public B, public C {
     // Inherits from both B and C which virtually inherit from A
+    // Ambiguity error will arise if virtual keyword is not used bcz D refers to B and C but B and C both refers to A and without virtual keyword it would inherit the two copies.
 };
+```
+
+# 🔒 Encapsulation in C++ (OOP)
+
+**Encapsulation** is a key concept in Object-Oriented Programming (OOP) that involves **hiding internal data** of an object and allowing access only through **public methods**. This provides **data security, integrity, and control**.
+
+---
+
+## ✅ Example: Bank Account in C++
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    double balance;  // Private data member
+
+public:
+    // Constructor
+    BankAccount(double initialBalance) {
+        if (initialBalance >= 0)
+            balance = initialBalance;
+        else
+            balance = 0;
+    }
+
+    // Public getter
+    double getBalance() {
+        return balance;
+    }
+
+    // Public setter methods
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        } else {
+            cout << "Insufficient balance or invalid amount." << endl;
+        }
+    }
+};
+
+int main() {
+    BankAccount account(1000);
+
+    cout << "Initial Balance: " << account.getBalance() << endl;
+
+    account.deposit(500);
+    cout << "After Deposit: " << account.getBalance() << endl;
+
+    account.withdraw(300);
+    cout << "After Withdrawal: " << account.getBalance() << endl;
+
+    // account.balance = 10000; // ❌ Not allowed: balance is private
+
+    return 0;
+}
 ```
 
 # Polymorphism in C++
 
 **Polymorphism** is one of the four fundamental principles of Object-Oriented Programming (OOP). It means **"many forms"**, allowing functions or objects to behave differently based on the context.
 
-> Polymorphism is the ability of objects to take no different forms or behave in different ways depending on the context in which they are used.
+> Polymorphism is the ability of objects to take many different forms or behave in different ways depending on the context in which they are used.
 
 Polymorphism enables a single function, operator, or object to work in different ways depending on the input or the object invoking it.
 
